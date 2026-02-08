@@ -1,0 +1,678 @@
+/* ===== リセット & ベース ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f5f5f5;
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== ヘッダー ===== */
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.header-sub {
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 400;
+}
+
+/* ===== セクション ===== */
+section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  border-left: 4px solid #4a90d9;
+  padding-left: 8px;
+}
+
+/* ===== セクション説明テキスト ===== */
+.section-desc {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-left: 3px solid #b0bec5;
+}
+
+.section-desc p {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2px;
+}
+
+.section-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.section-desc strong {
+  color: #333;
+}
+
+/* ===== フィールドヒント（追加項目の説明など） ===== */
+.field-hint {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 10px;
+  padding-left: 2px;
+  line-height: 1.5;
+}
+
+.placeholder {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* ===== 方式選択（mode-selector）===== */
+.mode-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.mode-label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.mode-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mode-option input[type="radio"] {
+  accent-color: #4a90d9;
+}
+
+/* ===== fieldset (平日 / 休日 / 追加) ===== */
+fieldset.day-group {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+fieldset.day-group legend {
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 0 6px;
+  color: #4a90d9;
+}
+
+/* ===== 入力行 ===== */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.input-row label {
+  width: 90px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.input-row input[type="number"] {
+  width: 58px;
+  padding: 8px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* スピナー非表示（見た目をすっきり） */
+.input-row input[type="number"]::-webkit-outer-spin-button,
+.input-row input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.input-row .unit {
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 500;
+  margin-right: 6px;
+  min-width: 1.5em;
+}
+
+/* 追加項目の名前入力 */
+.extra-name {
+  width: 90px !important;
+  padding: 6px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ===== コピーツールバー共通 ===== */
+.copy-toolbar {
+  margin-bottom: 10px;
+}
+
+.copy-toolbar button {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.88rem;
+  border: 1px dashed #4a90d9;
+  border-radius: 6px;
+  background: #f8fbff;
+  color: #4a90d9;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.copy-toolbar button:active {
+  background: #e8f0fe;
+}
+
+/* ===== byDay セクション ===== */
+.byday-toolbar {
+  margin-bottom: 12px;
+}
+
+#btn-copy-to-all {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px dashed #4a90d9;
+  border-radius: 6px;
+  background: #f8fbff;
+  color: #4a90d9;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+#btn-copy-to-all:active {
+  background: #e8f0fe;
+}
+
+/* ===== byDay 曜日間コピーツールバー ===== */
+.byday-copy-toolbar {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  background: #fafafa;
+}
+
+.byday-copy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.byday-copy-row select {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.copy-arrow {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.byday-copy-targets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-bottom: 10px;
+}
+
+.byday-copy-targets label {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.byday-copy-targets input[type="checkbox"] {
+  accent-color: #4a90d9;
+}
+
+.byday-copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.copy-quick-btn {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.copy-quick-btn:active {
+  background: #eee;
+}
+
+.copy-exec-btn {
+  padding: 5px 16px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  background: #4a90d9;
+  color: #fff;
+  cursor: pointer;
+  margin-left: auto;
+  transition: opacity 0.15s;
+}
+
+.copy-exec-btn:active {
+  opacity: 0.7;
+}
+
+/* ===== 曜日別 details / summary ===== */
+.day-details {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.day-details summary {
+  padding: 10px 12px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: #f9f9f9;
+  user-select: none;
+  list-style: none;           /* Safari */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.day-details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 開閉アイコン */
+.day-details summary::before {
+  content: "▶";
+  font-size: 0.65rem;
+  color: #999;
+  transition: transform 0.15s;
+}
+
+.day-details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.day-details summary:hover {
+  background: #f0f0f0;
+}
+
+.day-details[open] summary {
+  border-bottom: 1px solid #ddd;
+}
+
+/* 曜日ブロック中身 */
+.day-details-body {
+  padding: 8px 12px 4px;
+}
+
+.day-details-body .day-group {
+  border: none;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.day-details-body .day-group legend {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* 土日ラベル色分け */
+.day-details.weekend summary {
+  color: #e65100;
+}
+
+.day-details.weekday summary {
+  color: #333;
+}
+
+/* ===== ボタンエリア ===== */
+.button-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.button-area button {
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: opacity 0.2s;
+}
+
+.button-area button:active {
+  opacity: 0.7;
+}
+
+#btn-calc {
+  background: #ff9800;
+  font-weight: bold;
+}
+
+#btn-save-template {
+  background: #4a90d9;
+}
+
+#btn-save-override {
+  background: #50b883;
+}
+
+#btn-clear-all {
+  background: #e25d5d;
+}
+
+/* ===== 日別上書き: ヘッダー ===== */
+.override-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.override-header .input-row {
+  margin-bottom: 0;
+}
+
+.override-header input[type="date"] {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* ステータスバッジ */
+.ov-status {
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 16px;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+
+.badge-template {
+  background: #e8f0fe;
+  color: #4a90d9;
+  border: 1px solid #a4c8f0;
+}
+
+.badge-override {
+  background: #fff3e0;
+  color: #e65100;
+  border: 2px solid #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.15);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.15); }
+  50%      { box-shadow: 0 0 0 6px rgba(255, 152, 0, 0.08); }
+}
+
+/* メモ欄 */
+.memo-area {
+  margin-bottom: 12px;
+}
+
+.memo-area label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.memo-area textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* 上書き削除ボタン */
+#btn-delete-override {
+  background: #ff7043;
+}
+
+/* ===== エラーメッセージ ===== */
+.error-msg {
+  background: #fdecea;
+  color: #c0392b;
+  border: 1px solid #e74c3c;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  white-space: pre-line;
+}
+
+/* ===== 結果カード ===== */
+.result-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-card {
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+}
+
+.result-card.today {
+  background: #fff8e1;
+  border: 1px solid #ffd54f;
+}
+
+.result-card.today-error {
+  background: #fdecea;
+  border: 1px solid #e74c3c;
+}
+
+.result-card.weekday {
+  background: #e8f0fe;
+  border: 1px solid #a4c8f0;
+}
+
+.result-card.holiday {
+  background: #e8f8f0;
+  border: 1px solid #8fd4b4;
+}
+
+.result-card.weekly {
+  background: #f3e8ff;
+  border: 1px solid #c9a0f0;
+}
+
+.result-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.result-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.result-detail {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ===== 7日間 日別明細リスト ===== */
+.weekly-list {
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+  text-align: left;
+}
+
+.weekly-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-size: 0.85rem;
+  color: #444;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  flex-wrap: wrap;
+}
+
+.weekly-row:last-child {
+  border-bottom: none;
+}
+
+/* ソースバッジ（テンプレ / 上書き） */
+.src-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+
+.src-template {
+  background: #e8f0fe;
+  color: #4a90d9;
+}
+
+.src-override {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+/* 今日マーク */
+.today-mark {
+  font-size: 0.7rem;
+  color: #ff9800;
+  font-weight: bold;
+}
+
+/* ===== 通知トースト ===== */
+#notification-area {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: calc(100% - 32px);
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.notification {
+  pointer-events: auto;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: notif-slide-in 0.3s ease;
+  white-space: pre-line;
+  cursor: pointer;
+}
+
+.notification-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+}
+
+.notification-error {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #f44336;
+}
+
+.notification.fade-out {
+  animation: notif-fade-out 0.3s ease forwards;
+}
+
+@keyframes notif-slide-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes notif-fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}

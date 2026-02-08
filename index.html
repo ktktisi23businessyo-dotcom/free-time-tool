@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1日の必須時間を入力して、自由に使える時間を見える化するツール。ブラウザだけで動作、インストール不要。">
+  <meta name="theme-color" content="#4a90d9">
+  <title>自由な時間</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕐</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>自由な時間</h1>
+    <p class="header-sub">1日の必須時間を入力して、自由に使える時間を見える化 ✨</p>
+  </header>
+
+  <main>
+    <!-- ===== セクション1: 週間テンプレート設定 ===== -->
+    <section id="section-template">
+      <h2>週間テンプレート設定</h2>
+      <div class="section-desc">
+        <p>📋 テンプレ＝<strong>普段の1週間の基本形</strong>です。</p>
+        <p>まずテンプレを設定 → 例外がある日は「日別上書き」で調整できます。</p>
+      </div>
+
+      <!-- 方式選択 -->
+      <div class="mode-selector">
+        <span class="mode-label">方式:</span>
+        <label class="mode-option">
+          <input type="radio" name="tpl-mode" value="weekdayWeekend" checked>
+          平日/休日
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="tpl-mode" value="byDay">
+          曜日別
+        </label>
+      </div>
+
+      <!-- ===== weekdayWeekend モード ===== -->
+      <div id="weekday-weekend-section">
+        <!-- 平日 -->
+        <fieldset class="day-group" id="weekday-group">
+          <legend>平日</legend>
+          <div class="input-row">
+            <label>睡眠</label>
+            <input type="number" id="wd-sleep-h" min="0" max="24" value="7" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="wd-sleep-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>仕事</label>
+            <input type="number" id="wd-work-h" min="0" max="24" value="8" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="wd-work-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>通勤</label>
+            <input type="number" id="wd-commute-h" min="0" max="24" value="1" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="wd-commute-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>食事</label>
+            <input type="number" id="wd-meal-h" min="0" max="24" value="1" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="wd-meal-m" min="0" max="59" value="30" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>入浴身支度</label>
+            <input type="number" id="wd-bath-h" min="0" max="24" value="0" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="wd-bath-m" min="0" max="59" value="30" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+        </fieldset>
+
+        <!-- 平日→休日コピー -->
+        <div class="copy-toolbar">
+          <button id="btn-copy-wd-to-hd" type="button">📋 平日の値 → 休日にコピー</button>
+        </div>
+
+        <!-- 休日 -->
+        <fieldset class="day-group" id="holiday-group">
+          <legend>休日</legend>
+          <div class="input-row">
+            <label>睡眠</label>
+            <input type="number" id="hd-sleep-h" min="0" max="24" value="8" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="hd-sleep-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>仕事</label>
+            <input type="number" id="hd-work-h" min="0" max="24" value="0" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="hd-work-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>通勤</label>
+            <input type="number" id="hd-commute-h" min="0" max="24" value="0" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="hd-commute-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>食事</label>
+            <input type="number" id="hd-meal-h" min="0" max="24" value="1" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="hd-meal-m" min="0" max="59" value="30" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row">
+            <label>入浴身支度</label>
+            <input type="number" id="hd-bath-h" min="0" max="24" value="1" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="hd-bath-m" min="0" max="59" value="0" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+        </fieldset>
+
+        <!-- 追加固定項目（最大3） -->
+        <fieldset class="day-group" id="extra-group">
+          <legend>追加固定項目（最大3）</legend>
+          <p class="field-hint">毎日ほぼ必ず発生する固定時間を入力（例：育児・介護・送迎・家事など）</p>
+          <div class="input-row extra-row">
+            <input type="text" id="extra-name-1" class="extra-name" placeholder="項目名">
+            <input type="number" id="extra-h-1" min="0" max="24" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="extra-m-1" min="0" max="59" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row extra-row">
+            <input type="text" id="extra-name-2" class="extra-name" placeholder="項目名">
+            <input type="number" id="extra-h-2" min="0" max="24" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="extra-m-2" min="0" max="59" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+          <div class="input-row extra-row">
+            <input type="text" id="extra-name-3" class="extra-name" placeholder="項目名">
+            <input type="number" id="extra-h-3" min="0" max="24" placeholder="時間">
+            <span class="unit">時間</span>
+            <input type="number" id="extra-m-3" min="0" max="59" placeholder="分">
+            <span class="unit">分</span>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- ===== byDay モード ===== -->
+      <div id="byday-section" hidden>
+        <div class="byday-toolbar">
+          <button id="btn-copy-to-all" type="button">平日/休日の値 → 全曜日にコピー</button>
+        </div>
+
+        <!-- 曜日間コピー -->
+        <div class="byday-copy-toolbar">
+          <div class="byday-copy-row">
+            <select id="copy-source-day">
+              <option value="mon">月曜</option>
+              <option value="tue">火曜</option>
+              <option value="wed">水曜</option>
+              <option value="thu">木曜</option>
+              <option value="fri">金曜</option>
+              <option value="sat">土曜</option>
+              <option value="sun">日曜</option>
+            </select>
+            <span class="copy-arrow">の値を →</span>
+          </div>
+          <div class="byday-copy-targets" id="copy-target-days">
+            <!-- app.js で動的にチェックボックス生成 -->
+          </div>
+          <div class="byday-copy-actions">
+            <button type="button" class="copy-quick-btn" id="btn-check-weekdays">平日</button>
+            <button type="button" class="copy-quick-btn" id="btn-check-weekends">休日</button>
+            <button type="button" class="copy-quick-btn" id="btn-check-all-days">全て</button>
+            <button type="button" class="copy-exec-btn" id="btn-copy-day">コピー実行</button>
+          </div>
+        </div>
+
+        <div id="byday-container">
+          <!-- app.js の generateByDayForms() で動的生成 -->
+        </div>
+      </div>
+
+      <!-- 計算ボタン -->
+      <div class="button-area">
+        <button id="btn-calc" type="button">計算する</button>
+      </div>
+    </section>
+
+    <!-- ===== セクション2: 日別上書き ===== -->
+    <section id="section-override">
+      <h2>日別上書き</h2>
+      <div class="section-desc">
+        <p>✏️ 残業・休み・通院など<strong>「その日だけ違う」</strong>場合に使います。</p>
+        <p>上書きした日はテンプレより優先されます。</p>
+      </div>
+
+      <!-- 日付選択 + ステータス -->
+      <div class="override-header">
+        <div class="input-row">
+          <label for="ov-date">対象日</label>
+          <input type="date" id="ov-date">
+        </div>
+        <div id="ov-status" class="ov-status badge-template">📌 テンプレ適用</div>
+      </div>
+
+      <!-- 固定5項目 -->
+      <fieldset class="day-group" id="override-base-group">
+        <legend>この日の時間配分</legend>
+        <div class="input-row">
+          <label>睡眠</label>
+          <input type="number" id="ov-sleep-h" min="0" max="24" value="0" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-sleep-m" min="0" max="59" value="0" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row">
+          <label>仕事</label>
+          <input type="number" id="ov-work-h" min="0" max="24" value="0" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-work-m" min="0" max="59" value="0" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row">
+          <label>通勤</label>
+          <input type="number" id="ov-commute-h" min="0" max="24" value="0" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-commute-m" min="0" max="59" value="0" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row">
+          <label>食事</label>
+          <input type="number" id="ov-meal-h" min="0" max="24" value="0" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-meal-m" min="0" max="59" value="0" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row">
+          <label>入浴身支度</label>
+          <input type="number" id="ov-bath-h" min="0" max="24" value="0" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-bath-m" min="0" max="59" value="0" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+      </fieldset>
+
+      <!-- 追加固定項目（最大3） -->
+      <fieldset class="day-group" id="override-extra-group">
+        <legend>追加固定項目（最大3）</legend>
+        <p class="field-hint">この日だけ発生する追加の固定時間があれば入力</p>
+        <div class="input-row extra-row">
+          <input type="text" id="ov-extra-name-1" class="extra-name" placeholder="項目名">
+          <input type="number" id="ov-extra-h-1" min="0" max="24" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-extra-m-1" min="0" max="59" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row extra-row">
+          <input type="text" id="ov-extra-name-2" class="extra-name" placeholder="項目名">
+          <input type="number" id="ov-extra-h-2" min="0" max="24" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-extra-m-2" min="0" max="59" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+        <div class="input-row extra-row">
+          <input type="text" id="ov-extra-name-3" class="extra-name" placeholder="項目名">
+          <input type="number" id="ov-extra-h-3" min="0" max="24" placeholder="時間">
+          <span class="unit">時間</span>
+          <input type="number" id="ov-extra-m-3" min="0" max="59" placeholder="分">
+          <span class="unit">分</span>
+        </div>
+      </fieldset>
+
+      <!-- メモ -->
+      <div class="memo-area">
+        <label for="ov-memo">メモ（任意）</label>
+        <textarea id="ov-memo" rows="2" placeholder="例: 残業あり、午前休など"></textarea>
+      </div>
+
+      <!-- 上書きボタン -->
+      <div class="button-area">
+        <button id="btn-save-override" type="button">上書き保存</button>
+        <button id="btn-delete-override" type="button">この日の上書きを削除</button>
+      </div>
+    </section>
+
+    <!-- ===== セクション3: ダッシュボード ===== -->
+    <section id="section-dashboard">
+      <h2>ダッシュボード</h2>
+      <div class="section-desc">
+        <p>📊 自由時間 ＝ <strong>24時間 − 必須時間</strong>（睡眠・仕事など）</p>
+        <p>直近7日は、上書きがある日はそちらを優先して計算します。</p>
+      </div>
+      <div id="dashboard-error" class="error-msg" hidden></div>
+      <div id="dashboard-result" class="result-area">
+        <div class="result-card today-error">
+          <h3>テンプレート未設定</h3>
+          <p class="result-detail">テンプレートを設定して「テンプレ保存」を押してください</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ボタンエリア -->
+    <div class="button-area">
+      <button id="btn-save-template">テンプレ保存</button>
+      <button id="btn-clear-all">全データ削除</button>
+    </div>
+  </main>
+
+  <script src="calc.js"></script>
+  <script src="storage.js"></script>
+  <script src="util.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
